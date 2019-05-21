@@ -1,0 +1,75 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+      - image: redis
+      - image: mcmoe/mssqldocker
+        environment:
+            ACCEPT_EULA: Y
+            SA_PASSWORD: MyTest$erver01
+            MSSQL_PID: Express
+            MSSQL_DB: test
+            MSSQL_USER: testUser
+            MSSQL_PASSWORD: testPassw0rd
+    steps:
+      - checkout
+      - run:
+          name: Fix CIRCLE_WORKING_DIRECTORY
+          command: echo 'CIRCLE_WORKING_DIRECTORY="${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}"' >> $BASH_ENV
+      - run:
+          name: install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
+      - run:
+          name: Wait for db
+          command: dockerize -wait tcp://localhost:1433 -timeout 5m
+      - run:
+          name: Wait for redis
+          command: dockerize -wait tcp://localhost:6379 -timeout 5m
+      - run:
+          name: Install Scope Runner
+          command: dotnet tool install --global ScopeAgent.Runner --version 0.1.6
+      - run:
+          name: Clean
+          command: dotnet clean
+      - run:
+          name: Build
+          command: dotnet build
+      - run:
+          name: Run xUnit CSharp
+          command: cd tests/csharp/Reference.Tests.CSharp.xUnit && /root/.dotnet/tools/scope-run dotnet test -n CSharp --debug && cd ../../..
+          when: always          
+      - run:
+          name: Run NUnit CSharp
+          command: cd tests/csharp/Reference.Tests.CSharp.NUnit && /root/.dotnet/tools/scope-run dotnet test -n CSharp --debug && cd ../../..
+          when: always
+      - run:
+          name: Run MSTest CSharp
+          command: cd tests/csharp/Reference.Tests.CSharp.MSTest && /root/.dotnet/tools/scope-run dotnet test -n CSharp --debug && cd ../../..
+          when: always
+      - run:
+          name: Run xUnit VB
+          command: cd tests/csharp/Reference.Tests.VB.xUnit && /root/.dotnet/tools/scope-run dotnet test -n VB.NET --debug && cd ../../..
+          when: always          
+      - run:
+          name: Run NUnit VB
+          command: cd tests/csharp/Reference.Tests.VB.NUnit && /root/.dotnet/tools/scope-run dotnet test -n VB.NET --debug && cd ../../..
+          when: always
+      - run:
+          name: Run MSTest VB
+          command: cd tests/csharp/Reference.Tests.VB.MSTest && /root/.dotnet/tools/scope-run dotnet test -n VB.NET --debug && cd ../../..
+          when: always
+      - run:
+          name: Run xUnit FSharp
+          command: cd tests/csharp/Reference.Tests.FSharp.xUnit && /root/.dotnet/tools/scope-run dotnet test -n FSharp --debug && cd ../../..
+          when: always          
+      - run:
+          name: Run NUnit FSharp
+          command: cd tests/csharp/Reference.Tests.FSharp.NUnit && /root/.dotnet/tools/scope-run dotnet test -n FSharp --debug && cd ../../..
+          when: always
+      - run:
+          name: Run MSTest FSharp
+          command: cd tests/csharp/Reference.Tests.FSharp.MSTest && /root/.dotnet/tools/scope-run dotnet test -n FSharp --debug && cd ../../..
+          when: always
