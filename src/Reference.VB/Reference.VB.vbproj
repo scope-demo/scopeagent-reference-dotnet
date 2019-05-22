@@ -10,7 +10,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
-    <PackageReference Include="ScopeAgent.Extensions.NetCore" Version="0.1.6" />
-    <PackageReference Include="StackExchange.Redis" Version="2.0.601" />  </ItemGroup>
+    <PackageReference Include="ScopeAgent.Extensions.NetCore" Version="0.1.7-beta.1" />
+    <PackageReference Include="StackExchange.Redis" Version="2.0.601" />  
+  </ItemGroup>
 
 </Project>
