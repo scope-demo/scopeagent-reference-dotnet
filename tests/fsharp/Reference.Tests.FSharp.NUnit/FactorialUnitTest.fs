@@ -21,9 +21,7 @@ type FactorialUnitTest () =
         if (GlobalTracer.IsRegistered() = false) then
             GlobalTracer.Register(NoopTracerFactory.Create())
         let loggerFactory = new LoggerFactory()       
-        // We add the ScopeAgent Logger instrumentation (Automatically added on ASP.NET Core project)
-        let iLoggerFactory = loggerFactory.AddScopeAgentLogger()
-        _logger <- iLoggerFactory.CreateLogger<FactorialUnitTest>()
+        _logger <- loggerFactory.CreateLogger<FactorialUnitTest>()
         ()
     
     [<Test>]

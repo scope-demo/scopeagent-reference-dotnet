@@ -7,9 +7,7 @@ open Microsoft.Extensions.Logging
 
 type FactorialUnitTest () =
     let loggerFactory = new LoggerFactory()       
-    // We add the ScopeAgent Logger instrumentation (Automatically added on ASP.NET Core project)
-    let iLoggerFactory = loggerFactory.AddScopeAgentLogger()
-    let _logger = iLoggerFactory.CreateLogger<FactorialUnitTest>()
+    let _logger = loggerFactory.CreateLogger<FactorialUnitTest>()
 
     member private this.Factorial(number: int) =
         let tracer = GlobalTracer.Instance

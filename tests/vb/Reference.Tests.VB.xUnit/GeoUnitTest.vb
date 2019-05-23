@@ -23,9 +23,7 @@ Public Class GeoUnitTest
             GlobalTracer.Register(NoopTracerFactory.Create())
         End If
 
-        'We add the ScopeAgent Logger instrumentation (Automatically added on ASP.NET Core project)
-        Dim loggerFactory = New LoggerFactory().AddScopeAgentLogger()
-
+        Dim loggerFactory = New LoggerFactory()
         _logger = loggerFactory.CreateLogger(Of GeoUnitTest)()
 
     End Sub

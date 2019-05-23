@@ -19,10 +19,7 @@ namespace Reference.Tests.CSharp.xUnit
             if (!GlobalTracer.IsRegistered())
                 GlobalTracer.Register(NoopTracerFactory.Create());
 
-            var loggerFactory = new LoggerFactory()
-                // We add the ScopeAgent Logger instrumentation (Automatically added on ASP.NET Core project)
-                .AddScopeAgentLogger();
-
+            var loggerFactory = new LoggerFactory();
             _logger = loggerFactory.CreateLogger<FactorialUnitTest>();
         }
 
