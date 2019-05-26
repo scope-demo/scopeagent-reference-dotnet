@@ -1,22 +1,22 @@
 ﻿Imports Microsoft.Extensions.Logging
-Imports NUnit.Framework
+Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports OpenTracing.Noop
 Imports OpenTracing.Util
 Imports Reference.VB
 ' ReSharper disable InconsistentNaming
 ' ReSharper disable UnusedVariable
 
-
 ''' <summary>
-''' Geo UnitTest
+''' Geo Integration Test
 ''' </summary>
-Public Class GeoUnitTest
+<TestClass>
+Public Class GeoIntegrationTest
     Private _logger As ILogger
 
     ''' <summary>
     ''' Initialize test
     ''' </summary>
-    <SetUp>
+    <TestInitialize>
     Public Sub Init()
 
         'If no global tracer is registered (not running with scope-run), we register the Noop tracer
@@ -25,7 +25,7 @@ Public Class GeoUnitTest
         End If
 
         Dim loggerFactory = New LoggerFactory()
-        _logger = loggerFactory.CreateLogger(Of GeoUnitTest)()
+        _logger = loggerFactory.CreateLogger(Of GeoIntegrationTest)()
 
     End Sub
 
@@ -33,7 +33,7 @@ Public Class GeoUnitTest
     ''' Complete Geo Test
     ''' </summary>
     ''' <returns>Test task</returns>
-    <Test>
+    <TestMethod>
     Public Async Function CompleteOKTest() As Task
         Const UUID = "9E219725-490E-4509-A42D-D0388DF317D4"
 
@@ -98,4 +98,5 @@ Public Class GeoUnitTest
     End Function
 
 End Class
+
 

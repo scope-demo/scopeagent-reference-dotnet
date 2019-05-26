@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using NUnit.Framework;
+using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenTracing.Noop;
 using OpenTracing.Util;
 using Reference.CSharp;
@@ -7,19 +7,20 @@ using System.Threading.Tasks;
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedVariable
 
-namespace Reference.Tests.CSharp.NUnit
+namespace Reference.Tests.CSharp.MSTest
 {
     /// <summary>
-    /// Geo UnitTest
+    /// Geo Integration Test
     /// </summary>
-    public class GeoUnitTest
+    [TestClass]
+    public class GeoIntegrationTest
     {
         private ILogger _logger;
 
         /// <summary>
         /// Initialize test
         /// </summary>
-        [SetUp]
+        [TestInitialize]
         public void Init()
         {
             //If no global tracer is registered (not running with scope-run), we register the Noop tracer
@@ -27,14 +28,14 @@ namespace Reference.Tests.CSharp.NUnit
                 GlobalTracer.Register(NoopTracerFactory.Create());
 
             var loggerFactory = new LoggerFactory();
-            _logger = loggerFactory.CreateLogger<GeoUnitTest>();
+            _logger = loggerFactory.CreateLogger<GeoIntegrationTest>();
         }
 
         /// <summary>
         /// Complete Geo Test
         /// </summary>
         /// <returns>Test task</returns>
-        [Test]
+        [TestMethod]
         public async Task CompleteOKTest()
         {
             const string UUID = "9E219725-490E-4509-A42D-D0388DF317D4";

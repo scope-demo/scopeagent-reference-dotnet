@@ -10,14 +10,14 @@ Solution, containing examples for `C#`, `VB.NET` and `F#`
 ### Reference source code
 
 | Path | Description |
-|:----:|:-----------:|
+|------|-------------|
 | `src/Reference.Csharp` | **C# project** containing `Models`, `Entities`, `Http clients`, `Redis clients` and `Database connectors` as an application logic representation without any reference to Opentracing neither the ScopeAgent. 
 | `src/Reference.VB` | **VB.NET project** containing `Models`, `Entities`, `Http clients`, `Redis clients` and `Database connectors` as an application logic representation without any reference to Opentracing neither the ScopeAgent.
 
 ### Reference unit tests
 
 | Path | Description |
-|:----:|:-----------:|
+|------|-------------|
 | `tests/csharp/Reference.Tests.CSharp.MSTest` | **C# project**  for `MSTest Framework` |
 | `tests/csharp/Reference.Tests.CSharp.NUnit` | **C# project** for `NUnit Framework`  |
 | `tests/csharp/Reference.Tests.CSharp.xUnit` | **C# project** for `xUnit Framework`  |
@@ -32,10 +32,6 @@ Solution, containing examples for `C#`, `VB.NET` and `F#`
 ## Available Unit Tests
 
 - **SimpleUnitTest**: *Unit tests without any Opentracing neither ScopeAgent dependency*
-    - **`HttpOK`**: A simple `HttpClient` request to *http://www.google.com*.
-    - **`HttpBadFormat`**: A simple `HttpClient` request to *http://www.badUrl.c213* to throw a `BadRequest`exception.
-    - **`HttpKO`**: A simple `HttpClient` request to *http://localhost* to throw a `SocketException` exception 
-    (assuming no listener is setted on localhost:80).
     - **`SkipTest`**: An empty UnitTest with the `Skip/Ignore` attribute.
     - **`FailTest`**: A simple UnitTest to demonstrate an `Assert` exception.
     
@@ -51,8 +47,17 @@ Solution, containing examples for `C#`, `VB.NET` and `F#`
     
 - **Log4NetUnitTest**
     - **`Log4NetExample`**: UnitTest demonstrating `Events` creation using the [`log4net`](https://logging.apache.org/log4net/) logger.
-    
-- **GeoUnitTest**: *(Available only on C# and VB.NET UnitTest Project)*
+
+
+## Available Integration Tests
+
+- **SimpleIntegrationTest**: *Integration tests without any Opentracing neither ScopeAgent dependency*
+    - **`HttpOK`**: A simple `HttpClient` request to *http://www.google.com*.
+    - **`HttpBadFormat`**: A simple `HttpClient` request to *http://www.badUrl.c213* to throw a `BadRequest`exception.
+    - **`HttpKO`**: A simple `HttpClient` request to *http://localhost* to throw a `SocketException` exception 
+    (assuming no listener is setted on localhost:80).
+
+- **GeoIntegrationTest**: *(Available only on C# and VB.NET UnitTest Project)*
     - **`CompleteOKTest`**: *A complex UnitTest demonstrating:*
     
         - `Span` creation using the [`GlobalTracer`](https://www.nuget.org/packages/OpenTracing/).

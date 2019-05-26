@@ -1,22 +1,23 @@
 ﻿Imports Microsoft.Extensions.Logging
+Imports NUnit.Framework
 Imports OpenTracing.Noop
 Imports OpenTracing.Util
 Imports Reference.VB
-Imports Xunit
 ' ReSharper disable InconsistentNaming
 ' ReSharper disable UnusedVariable
 
 
 ''' <summary>
-''' Geo UnitTest
+''' Geo Integration Test
 ''' </summary>
-Public Class GeoUnitTest
-    Private ReadOnly _logger As ILogger
+Public Class GeoIntegrationTest
+    Private _logger As ILogger
 
     ''' <summary>
     ''' Initialize test
     ''' </summary>
-    Public Sub New()
+    <SetUp>
+    Public Sub Init()
 
         'If no global tracer is registered (not running with scope-run), we register the Noop tracer
         If Not GlobalTracer.IsRegistered() Then
@@ -24,7 +25,7 @@ Public Class GeoUnitTest
         End If
 
         Dim loggerFactory = New LoggerFactory()
-        _logger = loggerFactory.CreateLogger(Of GeoUnitTest)()
+        _logger = loggerFactory.CreateLogger(Of GeoIntegrationTest)()
 
     End Sub
 
@@ -32,7 +33,7 @@ Public Class GeoUnitTest
     ''' Complete Geo Test
     ''' </summary>
     ''' <returns>Test task</returns>
-    <Fact>
+    <Test>
     Public Async Function CompleteOKTest() As Task
         Const UUID = "9E219725-490E-4509-A42D-D0388DF317D4"
 
@@ -48,7 +49,7 @@ Public Class GeoUnitTest
             If geoPoint Is Nothing Then
                 _logger.LogWarning("The GeoPoint was not found in the cache.")
                 geoPoint = Await geoService.GetGeoPointAsync(UUID)
-                Assert.NotNull(geoPoint)
+                Assert.IsNotNull(geoPoint, "The GeoPoint shouldn't be null")
                 _logger.LogInformation("The GeoPoint was retrieved from the GeoService: {geoPoint}", geoPoint)
                 Await geoServiceCache.SetGeoPointAsync(UUID, geoPoint)
             Else
@@ -66,7 +67,7 @@ Public Class GeoUnitTest
             If streetMap Is Nothing Then
                 _logger.LogWarning("The OpenStreet data was not found in the cache.")
                 streetMap = Await openStreetMapService.GetOpenStreetMapAsync(geoPoint)
-                Assert.NotNull(streetMap)
+                Assert.IsNotNull(streetMap, "The OpenStreet data is null!")
                 _logger.LogInformation("The OpenStreet data was retrieved from the Service: {openStreetMap}", streetMap)
                 Await openStreetMapServiceCache.SetOpenStreetMapAsync(UUID, streetMap)
             Else

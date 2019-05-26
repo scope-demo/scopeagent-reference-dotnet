@@ -10,23 +10,23 @@ using Xunit;
 namespace Reference.Tests.CSharp.xUnit
 {
     /// <summary>
-    /// Geo UnitTest
+    /// Geo Integration Test
     /// </summary>
-    public class GeoUnitTest
+    public class GeoIntegrationTest
     {
         private readonly ILogger _logger;
 
         /// <summary>
         /// Initialize test
         /// </summary>
-        public GeoUnitTest()
+        public GeoIntegrationTest()
         {
             //If no global tracer is registered (not running with scope-run), we register the Noop tracer
             if (!GlobalTracer.IsRegistered())
                 GlobalTracer.Register(NoopTracerFactory.Create());
 
             var loggerFactory = new LoggerFactory();
-            _logger = loggerFactory.CreateLogger<GeoUnitTest>();
+            _logger = loggerFactory.CreateLogger<GeoIntegrationTest>();
         }
 
         /// <summary>

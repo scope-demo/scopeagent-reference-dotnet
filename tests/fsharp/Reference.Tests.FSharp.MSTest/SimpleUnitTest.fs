@@ -7,30 +7,6 @@ open System.Net.Http
 type SimpleUnitTest () =
 
     [<TestMethod>]
-    member this.HttpOK () = 
-        Async.RunSynchronously(async {
-            use client = new HttpClient()
-            let! _ = client.GetAsync("http://www.google.com") |> Async.AwaitTask
-            ()
-        })
-
-    [<TestMethod>]
-    member this.HttpBadFormat () = 
-        Async.RunSynchronously(async {
-            use client = new HttpClient()
-            let! _ = client.GetAsync("http://www.badUrl.c213") |> Async.AwaitTask
-            ()
-        })
-
-    [<TestMethod>]
-    member this.HttpKO () = 
-        Async.RunSynchronously(async {
-            use client = new HttpClient()
-            let! _ = client.GetAsync("http://localhost") |> Async.AwaitTask
-            ()
-        })
-    
-    [<TestMethod>]
     [<Ignore("Skipped test demo")>]
     member this.SkipTest() =
         ()

@@ -6,40 +6,10 @@ using System.Threading.Tasks;
 namespace Reference.Tests.CSharp.NUnit
 {
     /// <summary>
-    /// Simple UnitTest
+    /// Simple Unit Test
     /// </summary>
     public class SimpleUnitTest
     {
-        /// <summary>
-        /// Simple Http Get OK
-        /// </summary>
-        [Test]
-        public async Task HttpOK()
-        {
-            using (var client = new HttpClient())
-                await client.GetAsync("http://www.google.com");
-        }
-
-        /// <summary>
-        /// Simple Http Get BadFormat
-        /// </summary>
-        [Test]
-        public async Task HttpBadFormat()
-        {
-            using (var client = new HttpClient())
-                await client.GetAsync("http://www.badUrl.c213");
-        }
-
-        /// <summary>
-        /// Simple Http Get KO
-        /// </summary>
-        [Test]
-        public async Task HttpKO()
-        {
-            using (var client = new HttpClient())
-                await client.GetAsync("http://localhost");
-        }
-
         /// <summary>
         /// Skipped Test
         /// </summary>
