@@ -32,33 +32,33 @@ Solution, containing examples for `C#`, `VB.NET` and `F#`
 ## Available Unit Tests
 
 - **SimpleUnitTest**: *Unit tests without any Opentracing neither ScopeAgent dependency*
-    - **`SkipTest`**: An empty UnitTest with the `Skip/Ignore` attribute.
-    - **`FailTest`**: A simple UnitTest to demonstrate an `Assert` exception.
+    - [**`SkipTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/SimpleUnitTest.cs#L14:L21): An empty UnitTest with the `Skip/Ignore` attribute.
+    - [**`FailTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/SimpleUnitTest.cs#L23:L44): A simple UnitTest to demonstrate an `Assert` exception.
     
 - **FactorialUnitTest**
-    - **`FactorialTest`**: UnitTest with a *Factorial algorithm* that creates an OpenTracing `Span` and `Event` on every
+    - [**`FactorialTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/FactorialUnitTest.cs#L31:L56): UnitTest with a *Factorial algorithm* that creates an OpenTracing `Span` and `Event` on every
     recursion using the [`GlobalTracer`](https://www.nuget.org/packages/OpenTracing/) and the [`Microsoft.Extensions.Logging`](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-2.2) logger.
     
 - **SerilogUnitTest**
-    - **`SerilogExample`**: UnitTest demonstrating `Events` creation using the [`Serilog`](https://serilog.net/) structured logger. 
+    - [**`SerilogExample`**](tests/csharp/Reference.Tests.CSharp.MSTest/SerilogUnitTest.cs#L26:L49): UnitTest demonstrating `Events` creation using the [`Serilog`](https://serilog.net/) structured logger. 
     
 - **NLogUnitTest**
-    - **`NLogExample`**: UnitTest demonstrating `Events` creation using the [`NLog`](https://nlog-project.org/) structured logger.
+    - [**`NLogExample`**](tests/csharp/Reference.Tests.CSharp.MSTest/NLogUnitTest.cs#L26:L49): UnitTest demonstrating `Events` creation using the [`NLog`](https://nlog-project.org/) structured logger.
     
 - **Log4NetUnitTest**
-    - **`Log4NetExample`**: UnitTest demonstrating `Events` creation using the [`log4net`](https://logging.apache.org/log4net/) logger.
+    - [**`Log4NetExample`**](tests/csharp/Reference.Tests.CSharp.MSTest/Log4NetUnitTest.cs#L25:L45): UnitTest demonstrating `Events` creation using the [`log4net`](https://logging.apache.org/log4net/) logger.
 
 
 ## Available Integration Tests
 
 - **SimpleIntegrationTest**: *Integration tests without any Opentracing neither ScopeAgent dependency*
-    - **`HttpOK`**: A simple `HttpClient` request to *http://www.google.com*.
-    - **`HttpBadFormat`**: A simple `HttpClient` request to *http://www.badUrl.c213* to throw a `BadRequest`exception.
-    - **`HttpKO`**: A simple `HttpClient` request to *http://localhost* to throw a `SocketException` exception 
+    - [**`HttpOK`**](tests/csharp/Reference.Tests.CSharp.MSTest/SimpleIntegrationTest.cs#L14:L22): A simple `HttpClient` request to *http://www.google.com*.
+    - [**`HttpBadFormat`**](tests/csharp/Reference.Tests.CSharp.MSTest/SimpleIntegrationTest.cs#L24:L32): A simple `HttpClient` request to *http://www.badUrl.c213* to throw a `BadRequest`exception.
+    - [**`HttpKO`**](tests/csharp/Reference.Tests.CSharp.MSTest/SimpleIntegrationTest.cs#L34:L42): A simple `HttpClient` request to *http://localhost* to throw a `SocketException` exception 
     (assuming no listener is setted on localhost:80).
 
 - **GeoIntegrationTest**: *(Available only on C# and VB.NET UnitTest Project)*
-    - **`CompleteOKTest`**: *A complex UnitTest demonstrating:*
+    - [**`CompleteOKTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/GeoIntegrationTest.cs#L34:L105): *A complex UnitTest demonstrating:*
     
         - `Span` creation using the [`GlobalTracer`](https://www.nuget.org/packages/OpenTracing/).
         - `Event` creation using the [`Microsoft.Extensions.Logging`](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-2.2) structured logger.
