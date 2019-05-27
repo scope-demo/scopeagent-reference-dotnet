@@ -13,51 +13,51 @@ dotnet build
 
 echo Run xUnit on C#
 cd tests/csharp/Reference.Tests.CSharp.xUnit
-scope-run dotnet test -n CSharp --debug
+scope-run dotnet test -n CSharp
 cd ../../..
 
 echo Run NUnit on C#
 cd tests/csharp/Reference.Tests.CSharp.NUnit
-scope-run dotnet test -n CSharp --debug
+scope-run dotnet test -n CSharp
 cd ../../..
 
 echo Run MSTest on C#
 cd tests/csharp/Reference.Tests.CSharp.MSTest
-scope-run dotnet test -n CSharp --debug
+scope-run dotnet test -n CSharp
 cd ../../..
 
 
 
 echo Run xUnit on VB.NET
 cd tests/vb/Reference.Tests.VB.xUnit
-scope-run dotnet test -n VB.NET --debug
+scope-run dotnet test -n VB.NET
 cd ../../..
 
 echo Run NUnit on VB.NET
 cd tests/vb/Reference.Tests.VB.NUnit
-scope-run dotnet test -n VB.NET --debug
+scope-run dotnet test -n VB.NET
 cd ../../..
 
 echo Run MSTest on VB.NET
 cd tests/vb/Reference.Tests.VB.MSTest
-scope-run dotnet test -n VB.NET --debug
+scope-run dotnet test -n VB.NET
 cd ../../..
 
 
 
 echo Run xUnit on F#
 cd tests/fsharp/Reference.Tests.FSharp.xUnit
-scope-run dotnet test -n FSharp --debug
+scope-run dotnet test -n FSharp
 cd ../../..
 
 echo Run NUnit on F#
 cd tests/fsharp/Reference.Tests.FSharp.NUnit
-scope-run dotnet test -n FSharp --debug
+scope-run dotnet test -n FSharp
 cd ../../..
 
 echo Run MSTest on F#
 cd tests/fsharp/Reference.Tests.FSharp.MSTest
-scope-run dotnet test -n FSharp --debug
+scope-run dotnet test -n FSharp
 cd ../../..
 
 
