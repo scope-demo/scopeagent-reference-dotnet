@@ -51,25 +51,25 @@ jobs:
           when: always
       - run:
           name: Run xUnit VB
-          command: cd tests/csharp/Reference.Tests.VB.xUnit && /root/.dotnet/tools/scope-run dotnet test -n VB.NET --debug && cd ../../..
+          command: cd tests/vb/Reference.Tests.VB.xUnit && /root/.dotnet/tools/scope-run dotnet test -n VB.NET --debug && cd ../../..
           when: always          
       - run:
           name: Run NUnit VB
-          command: cd tests/csharp/Reference.Tests.VB.NUnit && /root/.dotnet/tools/scope-run dotnet test -n VB.NET --debug && cd ../../..
+          command: cd tests/vb/Reference.Tests.VB.NUnit && /root/.dotnet/tools/scope-run dotnet test -n VB.NET --debug && cd ../../..
           when: always
       - run:
           name: Run MSTest VB
-          command: cd tests/csharp/Reference.Tests.VB.MSTest && /root/.dotnet/tools/scope-run dotnet test -n VB.NET --debug && cd ../../..
+          command: cd tests/vb/Reference.Tests.VB.MSTest && /root/.dotnet/tools/scope-run dotnet test -n VB.NET --debug && cd ../../..
           when: always
       - run:
           name: Run xUnit FSharp
-          command: cd tests/csharp/Reference.Tests.FSharp.xUnit && /root/.dotnet/tools/scope-run dotnet test -n FSharp --debug && cd ../../..
+          command: cd tests/fsharp/Reference.Tests.FSharp.xUnit && /root/.dotnet/tools/scope-run dotnet test -n FSharp --debug && cd ../../..
           when: always          
       - run:
           name: Run NUnit FSharp
-          command: cd tests/csharp/Reference.Tests.FSharp.NUnit && /root/.dotnet/tools/scope-run dotnet test -n FSharp --debug && cd ../../..
+          command: cd tests/fsharp/Reference.Tests.FSharp.NUnit && /root/.dotnet/tools/scope-run dotnet test -n FSharp --debug && cd ../../..
           when: always
       - run:
           name: Run MSTest FSharp
-          command: cd tests/csharp/Reference.Tests.FSharp.MSTest && /root/.dotnet/tools/scope-run dotnet test -n FSharp --debug && cd ../../..
+          command: cd tests/fsharp/Reference.Tests.FSharp.MSTest && /root/.dotnet/tools/scope-run dotnet test -n FSharp --debug && cd ../../..
           when: always
