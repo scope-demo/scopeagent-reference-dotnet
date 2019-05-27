@@ -28,6 +28,7 @@ services:
       - BUILD_ID
       - BUILD_NUMBER
       - BUILD_URL
+      - GIT_COMMIT=$GIT_COMMIT
     links:
       - redis
       - sqlserver
