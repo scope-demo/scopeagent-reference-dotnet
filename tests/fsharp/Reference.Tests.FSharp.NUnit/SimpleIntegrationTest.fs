@@ -25,7 +25,7 @@ type SimpleIntegrationTest () =
     member this.HttpKO () = 
         Async.RunSynchronously(async {
             use client = new HttpClient()
-            let! _ = client.GetAsync("http://localhost") |> Async.AwaitTask
+            let! _ = client.GetAsync("http://localhost:24555") |> Async.AwaitTask
             ()
         })
     

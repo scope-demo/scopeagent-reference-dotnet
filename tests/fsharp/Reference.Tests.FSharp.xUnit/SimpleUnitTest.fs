@@ -2,32 +2,22 @@
 
 open Xunit
 open System.Net.Http
+open System
 
 type SimpleUnitTest () =
 
     [<Fact>]
-    member this.HttpOK () = 
-        Async.RunSynchronously(async {
-            use client = new HttpClient()
-            let! _ = client.GetAsync("http://www.google.com") |> Async.AwaitTask
-            ()
-        })
+    member this.OkTest() =
+        let str01 = "Hello World"
+        let str02 = "hello world"
+        Assert.True(String.Equals(str01, str02, StringComparison.OrdinalIgnoreCase))
 
     [<Fact>]
-    member this.HttpBadFormat () = 
-        Async.RunSynchronously(async {
-            use client = new HttpClient()
-            let! _ = client.GetAsync("http://www.badUrl.c213") |> Async.AwaitTask
-            ()
-        })
+    member this.ErrorTest() =
+        let base64 = Convert.ToBase64String([|byte(1); byte(2); byte(3); byte(10); byte(11); byte(12)|] : byte[])
+        let result = Convert.FromBase64String(base64.Substring(1))
+        ()
 
-    [<Fact>]
-    member this.HttpKO () = 
-        Async.RunSynchronously(async {
-            use client = new HttpClient()
-            let! _ = client.GetAsync("http://localhost") |> Async.AwaitTask
-            ()
-        })
     
     [<Fact(Skip="Skipped test demo")>]
     member this.SkipTest() =

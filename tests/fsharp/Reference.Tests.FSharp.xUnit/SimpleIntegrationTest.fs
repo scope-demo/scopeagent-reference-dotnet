@@ -1,12 +1,12 @@
-﻿namespace Reference.Tests.FSharp.MSTest
+﻿namespace Reference.Tests.FSharp.xUnit
 
-open Microsoft.VisualStudio.TestTools.UnitTesting
+open Xunit
 open System.Net.Http
+open System
 
-[<TestClass>]
 type SimpleIntegrationTest () =
 
-    [<TestMethod>]
+    [<Fact>]
     member this.HttpOK () = 
         Async.RunSynchronously(async {
             use client = new HttpClient()
@@ -14,7 +14,7 @@ type SimpleIntegrationTest () =
             ()
         })
 
-    [<TestMethod>]
+    [<Fact>]
     member this.HttpBadFormat () = 
         Async.RunSynchronously(async {
             use client = new HttpClient()
@@ -22,11 +22,10 @@ type SimpleIntegrationTest () =
             ()
         })
 
-    [<TestMethod>]
+    [<Fact>]
     member this.HttpKO () = 
         Async.RunSynchronously(async {
             use client = new HttpClient()
             let! _ = client.GetAsync("http://localhost:24555") |> Async.AwaitTask
             ()
         })
-    

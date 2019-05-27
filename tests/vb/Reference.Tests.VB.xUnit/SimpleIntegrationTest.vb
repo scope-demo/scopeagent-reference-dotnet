@@ -34,7 +34,7 @@ Public Class SimpleIntegrationTest
     <Fact>
     Public Async Function HttpKO() As Task
         Using client = New HttpClient()
-            Await client.GetAsync("http://localhost")
+            Await client.GetAsync("http://localhost:24555")
         End Using
     End Function
 

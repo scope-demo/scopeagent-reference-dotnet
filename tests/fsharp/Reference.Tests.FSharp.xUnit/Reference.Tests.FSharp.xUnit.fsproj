@@ -11,6 +11,7 @@
     <Compile Include="Log4NetUnitTest.fs" />
     <Compile Include="NLogUnitTest.fs" />
     <Compile Include="SerilogUnitTest.fs" />
+    <Compile Include="SimpleIntegrationTest.fs" />
     <Compile Include="SimpleUnitTest.fs" />
     <Compile Include="FactorialUnitTest.fs" />
     <Compile Include="Program.fs" />

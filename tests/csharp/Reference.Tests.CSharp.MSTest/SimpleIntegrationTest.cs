@@ -38,7 +38,7 @@ namespace Reference.Tests.CSharp.MSTest
         public async Task HttpKO()
         {
             using (var client = new HttpClient())
-                await client.GetAsync("http://localhost");
+                await client.GetAsync("http://localhost:24555");
         }
     }
 }

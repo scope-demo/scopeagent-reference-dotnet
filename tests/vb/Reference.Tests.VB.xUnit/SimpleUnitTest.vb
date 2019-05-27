@@ -9,6 +9,35 @@ Imports Xunit
 Public Class SimpleUnitTest
 
     ''' <summary>
+    ''' Ok Test
+    ''' </summary>
+    <Fact>
+    Public Sub OkTest()
+        Dim str01 = "Hello World"
+        Dim str02 = "hello world"
+
+        Assert.Equal(str01, str02, ignoreCase:=True)
+    End Sub
+
+    ''' <summary>
+    ''' Error test
+    ''' </summary>
+    <Fact>
+    Public Sub ErrorTest()
+        Dim base64 = Convert.ToBase64String(New Byte() {1, 2, 3, 10, 11, 12, 13})
+        StackLevel01(base64)
+    End Sub
+    Public Sub StackLevel01(base64 As String)
+        StackLevel02(base64)
+    End Sub
+    Public Sub StackLevel02(base64 As String)
+        StackLevel03(base64)
+    End Sub
+    Public Sub StackLevel03(base64 As String)
+        Convert.FromBase64String(base64.Substring(1))
+    End Sub
+
+    ''' <summary>
     ''' Skipped Test
     ''' </summary>
     <Fact(Skip:="Skipped test demo")>

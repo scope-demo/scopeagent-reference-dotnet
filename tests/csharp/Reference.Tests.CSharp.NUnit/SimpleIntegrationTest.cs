@@ -37,7 +37,7 @@ namespace Reference.Tests.CSharp.NUnit
         public async Task HttpKO()
         {
             using (var client = new HttpClient())
-                await client.GetAsync("http://localhost");
+                await client.GetAsync("http://localhost:24555");
         }
     }
 }

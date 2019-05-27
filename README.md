@@ -32,8 +32,10 @@ Solution, containing examples for `C#`, `VB.NET` and `F#`
 ## Available Unit Tests
 
 - **SimpleUnitTest**: *Unit tests without any Opentracing neither ScopeAgent dependency*
-    - [**`SkipTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/SimpleUnitTest.cs#L14:L21): An empty UnitTest with the `Skip/Ignore` attribute.
-    - [**`FailTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/SimpleUnitTest.cs#L23:L44): A simple UnitTest to demonstrate an `Assert` exception.
+    - [**`OkTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/SimpleUnitTest.cs#L15:L25): A simple UnitTest comparing two strings.
+    - [**`ErrorTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/SimpleUnitTest.cs#L27:L47): A simple UnitTest to demonstrate exception handling.
+    - [**`SkipTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/SimpleUnitTest.cs#L49:L56): An empty UnitTest with the `Skip/Ignore` attribute.
+    - [**`FailTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/SimpleUnitTest.cs#L58:L78): A simple UnitTest to demonstrate an `Assert` exception.
     
 - **FactorialUnitTest**
     - [**`FactorialTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/FactorialUnitTest.cs#L31:L56): UnitTest with a *Factorial algorithm* that creates an OpenTracing `Span` and `Event` on every

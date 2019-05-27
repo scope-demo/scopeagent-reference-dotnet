@@ -10,6 +10,35 @@ Imports System.Threading.Tasks
 Public Class SimpleUnitTest
 
     ''' <summary>
+    ''' Ok Test
+    ''' </summary>
+    <TestMethod>
+    Public Sub OkTest()
+        Dim str01 = "Hello World"
+        Dim str02 = "hello world"
+
+        Assert.IsTrue(String.Equals(str01, str02, StringComparison.OrdinalIgnoreCase))
+    End Sub
+
+    ''' <summary>
+    ''' Error test
+    ''' </summary>
+    <TestMethod>
+    Public Sub ErrorTest()
+        Dim base64 = Convert.ToBase64String(New Byte() {1, 2, 3, 10, 11, 12, 13})
+        StackLevel01(base64)
+    End Sub
+    Public Sub StackLevel01(base64 As String)
+        StackLevel02(base64)
+    End Sub
+    Public Sub StackLevel02(base64 As String)
+        StackLevel03(base64)
+    End Sub
+    Public Sub StackLevel03(base64 As String)
+        Convert.FromBase64String(base64.Substring(1))
+    End Sub
+
+    ''' <summary>
     ''' Skipped Test
     ''' </summary>
     <TestMethod>
