@@ -1,0 +1,34 @@
+version: "3.4"
+
+services: 
+
+  redis:
+    image: redis
+
+  sqlserver:
+    image: mcmoe/mssqldocker
+    environment: 
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=MyTest@erver01
+      - MSSQL_PID=Express
+      - MSSQL_DB=test
+      - MSSQL_USER=testUser
+      - MSSQL_PASSWORD=testPassw0rd
+
+  scopeagent-reference-dotnet:
+    build: .
+    environment: 
+      - CI
+      - SCOPE_APIKEY
+      - SCOPE_API_ENDPOINT
+      - CIRCLECI
+      - CIRCLE_BUILD_NUM
+      - CIRCLE_BUILD_URL
+      - JENKINS_URL
+      - BUILD_ID
+      - BUILD_NUMBER
+      - BUILD_URL
+    links:
+      - redis
+      - sqlserver
+  
