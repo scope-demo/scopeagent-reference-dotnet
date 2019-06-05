@@ -10,16 +10,16 @@ using Xunit;
 namespace Reference.Tests.CSharp.xUnit
 {
     /// <summary>
-    /// Geo Integration Test
+    /// MongoDB Geo Integration Test
     /// </summary>
-    public class GeoIntegrationTest
+    public class MongoDBGeoIntegrationTest
     {
         private readonly ILogger _logger;
 
         /// <summary>
         /// Initialize test
         /// </summary>
-        public GeoIntegrationTest()
+        public MongoDBGeoIntegrationTest()
         {
             //If no global tracer is registered (not running with scope-run), we register the Noop tracer
             if (!GlobalTracer.IsRegistered())
@@ -80,7 +80,7 @@ namespace Reference.Tests.CSharp.xUnit
                     _logger.LogInformation("The OpenStreet data was found in the cache: {openStreetMap}", streetMap);
             }
 
-            IPersistentData dbServices = new DatabaseService();
+            IPersistentData dbServices = new MongoDBService();
 
             using (var scope = tracer.BuildSpan("Save data").StartActive())
             {
