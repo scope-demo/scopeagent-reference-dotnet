@@ -74,4 +74,4 @@ Solution, containing examples for `C#`, `VB.NET` and `F#`
 - **MongoIntegrationTest**: *(Available only on C# and VB.NET UnitTest Project)*
     - [**`MongoOKTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/MongoGeoIntegrationTest.cs#L34:L105): *A complex UnitTest similar to `GeoIntegrationTest` but using MongoDB instrumentation*
         
-    [`View Results`]()
+    [`View Results`](https://demo.scope.dev/explore/9b3b9640-cead-4362-b5e8-2aa0af1f2414/15f60180-24a2-4015-9a8d-f3773f724424/VB.NET/test/00000000-0000-0000-d7d3-bcbc620acfef/trace)
