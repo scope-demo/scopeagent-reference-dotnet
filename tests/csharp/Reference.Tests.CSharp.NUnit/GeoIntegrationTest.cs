@@ -81,7 +81,7 @@ namespace Reference.Tests.CSharp.NUnit
                     _logger.LogInformation("The OpenStreet data was found in the cache: {openStreetMap}", streetMap);
             }
 
-            var dbServices = new DatabaseService();
+            IPersistentData dbServices = new DatabaseService();
 
             using (var scope = tracer.BuildSpan("Save data").StartActive())
             {

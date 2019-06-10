@@ -14,5 +14,17 @@ namespace Reference.CSharp
         /// DB ConnectionString
         /// </summary>
         public const string DBConnectionString = "Data Source=sqlserver;Initial Catalog=test;Persist Security Info=True;User ID=testUser;Password=testPassw0rd";
+        /// <summary>
+        /// MongoDB Url
+        /// </summary>
+        public const string MongoDBUrl = "mongodb://mongo:27017";
+        /// <summary>
+        /// MongoDB Database
+        /// </summary>
+        public const string MongoDBDatabase = "Reference";
+        /// <summary>
+        /// MongoDB Collection
+        /// </summary>
+        public const string MongoDBCollection = "Geo";
     }
 }

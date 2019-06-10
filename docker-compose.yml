@@ -5,6 +5,9 @@ services:
   redis:
     image: redis
 
+  mongo:
+    image: mongo
+
   sqlserver:
     image: mcmoe/mssqldocker
     environment: 
@@ -31,5 +34,6 @@ services:
       - GIT_COMMIT=$GIT_COMMIT
     links:
       - redis
+      - mongo
       - sqlserver
   

@@ -8,24 +8,16 @@ namespace Reference.CSharp
     /// <summary>
     /// Database service
     /// </summary>
-    public class DatabaseService
+    public class DatabaseService : IPersistentData
     {
-        /// <summary>
-        /// Ensure migration
-        /// </summary>
-        /// <returns>Migration task</returns>
+        /// <inheritdoc />
         public async Task EnsureMigrationAsync()
         {
             using (var context = new GeoContext())
                 await context.Database.MigrateAsync();
         }
 
-        /// <summary>
-        /// Save data to database
-        /// </summary>
-        /// <param name="geoPoint">GeoPoint value</param>
-        /// <param name="item">OpenStreetMapItem value</param>
-        /// <returns>Save database task</returns>
+        /// <inheritdoc />
         public async Task<bool> SaveDataAsync(GeoPoint geoPoint, OpenStreetMapItem item)
         {
             using (var context = new GeoContext())
@@ -53,10 +45,7 @@ namespace Reference.CSharp
             }
         }
 
-        /// <summary>
-        /// Get all data
-        /// </summary>
-        /// <returns>List with all geo data</returns>
+        /// <inheritdoc />
         public async Task<List<(GeoPoint GeoPoint, OpenStreetMapItem StreetMap)>> GetAllAsync()
         {
             var lstResponse = new List<(GeoPoint GeoPoint, OpenStreetMapItem StreetMap)>();

@@ -13,7 +13,7 @@ namespace Reference.Tests.CSharp.MSTest
     /// Geo Integration Test
     /// </summary>
     [TestClass]
-    public class GeoIntegrationTest
+    public class MongoGeoIntegrationTest
     {
         private ILogger _logger;
 
@@ -28,15 +28,15 @@ namespace Reference.Tests.CSharp.MSTest
                 GlobalTracer.Register(NoopTracerFactory.Create());
 
             var loggerFactory = new LoggerFactory();
-            _logger = loggerFactory.CreateLogger<GeoIntegrationTest>();
+            _logger = loggerFactory.CreateLogger<MongoGeoIntegrationTest>();
         }
 
         /// <summary>
-        /// Complete Geo Test
+        /// Mongo Geo Test
         /// </summary>
         /// <returns>Test task</returns>
         [TestMethod]
-        public async Task CompleteOKTest()
+        public async Task MongoOKTest()
         {
             const string UUID = "9E219725-490E-4509-A42D-D0388DF317D4";
 
@@ -82,7 +82,7 @@ namespace Reference.Tests.CSharp.MSTest
                     _logger.LogInformation("The OpenStreet data was found in the cache: {openStreetMap}", streetMap);
             }
 
-            IPersistentData dbServices = new DatabaseService();
+            IPersistentData dbServices = new MongoDBService();
 
             using (var scope = tracer.BuildSpan("Save data").StartActive())
             {
