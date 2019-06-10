@@ -9,15 +9,15 @@ namespace Reference.CSharp
         /// <summary>
         /// Redis HostName
         /// </summary>
-        public const string RedisHostName = "rotopia.xyz";
+        public const string RedisHostName = "redis";
         /// <summary>
         /// DB ConnectionString
         /// </summary>
-        public const string DBConnectionString = "Data Source=rotopia.xyz;Initial Catalog=test;Persist Security Info=True;User ID=testUser;Password=testPassw0rd";
+        public const string DBConnectionString = "Data Source=sqlserver;Initial Catalog=test;Persist Security Info=True;User ID=testUser;Password=testPassw0rd";
         /// <summary>
         /// MongoDB Url
         /// </summary>
-        public const string MongoDBUrl = "mongodb://localhost:27017";
+        public const string MongoDBUrl = "mongodb://mongo:27017";
         /// <summary>
         /// MongoDB Database
         /// </summary>

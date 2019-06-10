@@ -1,22 +1,22 @@
 ﻿Imports Microsoft.Extensions.Logging
-Imports Microsoft.VisualStudio.TestTools.UnitTesting
+Imports NUnit.Framework
 Imports OpenTracing.Noop
 Imports OpenTracing.Util
 Imports Reference.VB
 ' ReSharper disable InconsistentNaming
 ' ReSharper disable UnusedVariable
 
+
 ''' <summary>
 ''' Geo Integration Test
 ''' </summary>
-<TestClass>
-Public Class GeoIntegrationTest
+Public Class MongoGeoIntegrationTest
     Private _logger As ILogger
 
     ''' <summary>
     ''' Initialize test
     ''' </summary>
-    <TestInitialize>
+    <SetUp>
     Public Sub Init()
 
         'If no global tracer is registered (not running with scope-run), we register the Noop tracer
@@ -25,16 +25,16 @@ Public Class GeoIntegrationTest
         End If
 
         Dim loggerFactory = New LoggerFactory()
-        _logger = loggerFactory.CreateLogger(Of GeoIntegrationTest)()
+        _logger = loggerFactory.CreateLogger(Of MongoGeoIntegrationTest)()
 
     End Sub
 
     ''' <summary>
-    ''' Complete Geo Test
+    ''' Mongo Geo Test
     ''' </summary>
     ''' <returns>Test task</returns>
-    <TestMethod>
-    Public Async Function CompleteOKTest() As Task
+    <Test>
+    Public Async Function MongoOKTest() As Task
         Const UUID = "9E219725-490E-4509-A42D-D0388DF317D4"
 
         Dim tracer = GlobalTracer.Instance
@@ -59,7 +59,7 @@ Public Class GeoIntegrationTest
 
         Dim streetMap As OpenStreetMapItem
         Dim openStreetMapServiceCache = New OpenStreetMapRedisCache()
-        Dim openStreetMapService = New OpenstreetMapService()
+        Dim openStreetMapService = New OpenStreetMapService()
 
         Using scope As OpenTracing.IScope = tracer.BuildSpan("Get OpenStreet Data").StartActive()
             _logger.LogInformation("Getting data from cache")
@@ -75,7 +75,7 @@ Public Class GeoIntegrationTest
             End If
         End Using
 
-        Dim dbService As IPersistentData = New DatabaseService()
+        Dim dbService As IPersistentData = New MongoDBService()
 
         Using scope As OpenTracing.IScope = tracer.BuildSpan("Save data").StartActive()
             _logger.LogInformation("Ensuring migrations")
@@ -98,5 +98,4 @@ Public Class GeoIntegrationTest
     End Function
 
 End Class
-
 

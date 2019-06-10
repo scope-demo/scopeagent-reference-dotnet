@@ -26,15 +26,15 @@ namespace Reference.Tests.CSharp.xUnit
                 GlobalTracer.Register(NoopTracerFactory.Create());
 
             var loggerFactory = new LoggerFactory();
-            _logger = loggerFactory.CreateLogger<GeoIntegrationTest>();
+            _logger = loggerFactory.CreateLogger<MongoDBGeoIntegrationTest>();
         }
 
         /// <summary>
-        /// Complete Geo Test
+        /// Mongo Geo Test
         /// </summary>
         /// <returns>Test task</returns>
         [Fact]
-        public async Task CompleteOKTest()
+        public async Task MongoOKTest()
         {
             const string UUID = "9E219725-490E-4509-A42D-D0388DF317D4";
 

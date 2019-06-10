@@ -75,7 +75,7 @@ Public Class GeoIntegrationTest
             End If
         End Using
 
-        Dim dbService = New DatabaseService()
+        Dim dbService As IPersistentData = New DatabaseService()
 
         Using scope As OpenTracing.IScope = tracer.BuildSpan("Save data").StartActive()
             _logger.LogInformation("Ensuring migrations")
