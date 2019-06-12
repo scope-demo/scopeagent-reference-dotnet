@@ -8,9 +8,9 @@ Imports Xunit
 
 
 ''' <summary>
-''' Geo Integration Test
+''' Postgres Integration Test
 ''' </summary>
-Public Class GeoIntegrationTest
+Public Class PostgresIntegrationTest
     Private ReadOnly _logger As ILogger
 
     ''' <summary>
@@ -29,11 +29,11 @@ Public Class GeoIntegrationTest
     End Sub
 
     ''' <summary>
-    ''' Complete Geo Test
+    ''' Postgres Geo Test
     ''' </summary>
     ''' <returns>Test task</returns>
     <Fact>
-    Public Async Function CompleteOKTest() As Task
+    Public Async Function PostgresCompleteTest() As Task
         Const UUID = "9E219725-490E-4509-A42D-D0388DF317D4"
 
         Dim tracer = GlobalTracer.Instance
@@ -58,7 +58,7 @@ Public Class GeoIntegrationTest
 
         Dim streetMap As OpenStreetMapItem
         Dim openStreetMapServiceCache = New OpenStreetMapRedisCache()
-        Dim openStreetMapService = New OpenstreetMapService()
+        Dim openStreetMapService = New OpenStreetMapService()
 
         Using scope As OpenTracing.IScope = tracer.BuildSpan("Get OpenStreet Data").StartActive()
             _logger.LogInformation("Getting data from cache")
@@ -74,7 +74,7 @@ Public Class GeoIntegrationTest
             End If
         End Using
 
-        Dim dbService = New DatabaseService(DBServerType.SqlServer)
+        Dim dbService = New DatabaseService(DBServerType.Postgres)
 
         Using scope As OpenTracing.IScope = tracer.BuildSpan("Save data").StartActive()
             _logger.LogInformation("Ensuring migrations")

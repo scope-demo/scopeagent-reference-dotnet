@@ -75,7 +75,7 @@ Public Class GeoIntegrationTest
             End If
         End Using
 
-        Dim dbService = New DatabaseService()
+        Dim dbService = New DatabaseService(DBServerType.SqlServer)
 
         Using scope As OpenTracing.IScope = tracer.BuildSpan("Save data").StartActive()
             _logger.LogInformation("Ensuring migrations")

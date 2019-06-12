@@ -5,6 +5,13 @@ services:
   redis:
     image: redis
 
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=test
+      - POSTGRES_USER=testUser
+      - POSTGRES_PASSWORD=testPassw0rd
+
   sqlserver:
     image: mcmoe/mssqldocker
     environment: 
@@ -32,4 +39,5 @@ services:
     links:
       - redis
       - sqlserver
+      - postgres
   
