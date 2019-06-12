@@ -110,7 +110,7 @@ namespace Reference.Tests.CSharp.NUnit
         [Test]
         public async Task ErrorIntegrationTest()
         {
-            const string UUID = "C4F198BD-9F6B-43D0-BFCE-5D21EB2FECD3";
+            const string UUID = "C4F198BD-9F6B-43D0-BFCE-5D21EB2FECDG";
 
             var tracer = GlobalTracer.Instance;
 
