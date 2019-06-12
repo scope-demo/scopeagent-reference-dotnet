@@ -103,7 +103,7 @@ Public Class GeoIntegrationTest
     ''' <returns>Test task</returns>
     <Test>
     Public Async Function ErrorIntegrationTest() As Task
-        Const UUID = "C4F198BD-9F6B-43D0-BFCE-5D21EB2FECD3"
+        Const UUID = "C4F198BD-9F6B-43D0-BFCE-5D21EB2FECDG"
 
         Dim tracer = GlobalTracer.Instance
 
