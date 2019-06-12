@@ -103,5 +103,38 @@ namespace Reference.Tests.CSharp.MSTest
                 await openStreetMapServiceCache.DeleteAsync(UUID);
             }
         }
+
+        /// <summary>
+        /// Error integration test
+        /// </summary>
+        /// <returns>Test task</returns>
+        [TestMethod]
+        public async Task ErrorIntegrationTest()
+        {
+            const string UUID = "C4F198BD-9F6B-43D0-BFCE-5D21EB2FECD3";
+
+            var tracer = GlobalTracer.Instance;
+
+            GeoPoint geoPoint;
+            var geoServiceCache = new GeoServiceRedisCache();
+            var geoService = new GeoService();
+
+            using (var scope = tracer.BuildSpan("Get GeoPoint Data").StartActive())
+            {
+                _logger.LogInformation("Getting data from cache.");
+                geoPoint = await geoServiceCache.GetGeoPointAsync(UUID);
+                if (geoPoint == null)
+                {
+                    _logger.LogWarning("The GeoPoint was not found in the cache.");
+                    geoPoint = await geoService.GetGeoPointAsync(UUID);
+                    Assert.IsNotNull(geoPoint);
+                    _logger.LogInformation("The GeoPoint was retrieved from the GeoService: {geoPoint}", geoPoint);
+                    await geoServiceCache.SetGeoPointAsync(UUID, geoPoint);
+                }
+                else
+                    _logger.LogInformation("The GeoPoint was found in the cache: {geoPoint}", geoPoint);
+            }
+        }
+
     }
 }

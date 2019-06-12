@@ -96,5 +96,35 @@ Public Class GeoIntegrationTest
 
     End Function
 
+    ''' <summary>
+    ''' Error integration test
+    ''' </summary>
+    ''' <returns>Test task</returns>
+    <Fact>
+    Public Async Function ErrorIntegrationTest() As Task
+        Const UUID = "C4F198BD-9F6B-43D0-BFCE-5D21EB2FECD3"
+
+        Dim tracer = GlobalTracer.Instance
+
+        Dim geoPoint As GeoPoint
+        Dim geoServiceCache = New GeoServiceRedisCache()
+        Dim geoService = New GeoService()
+
+        Using scope As OpenTracing.IScope = tracer.BuildSpan("Get GeoPoint Data").StartActive()
+            _logger.LogInformation("Getting data from cache")
+            geoPoint = Await geoServiceCache.GetGeoPointAsync(UUID)
+            If geoPoint Is Nothing Then
+                _logger.LogWarning("The GeoPoint was not found in the cache.")
+                geoPoint = Await geoService.GetGeoPointAsync(UUID)
+                Assert.NotNull(geoPoint)
+                _logger.LogInformation("The GeoPoint was retrieved from the GeoService: {geoPoint}", geoPoint)
+                Await geoServiceCache.SetGeoPointAsync(UUID, geoPoint)
+            Else
+                _logger.LogInformation("The GeoPoint was found in the cache: {geoPoint}", geoPoint)
+            End If
+        End Using
+
+    End Function
+
 End Class
 
