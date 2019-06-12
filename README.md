@@ -60,6 +60,7 @@ Solution, containing examples for `C#`, `VB.NET` and `F#`
     (assuming no listener is setted on localhost:80). [`View Results`](https://demo.scope.dev/explore/9b3b9640-cead-4362-b5e8-2aa0af1f2414/15f60180-24a2-4015-9a8d-f3773f724424/CSharp/test/00000000-0000-0000-72d7-cf4890a4a0ec/trace)
 
 - **GeoIntegrationTest**: *(Available only on C# and VB.NET UnitTest Project)*
+    - [**`ErrorIntegrationTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/GeoIntegrationTest.cs#L107:L137): An integration test with a remote service error. [`View Results`]() 
     - [**`CompleteOKTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/GeoIntegrationTest.cs#L34:L105): *A complex UnitTest demonstrating:*
     
         - `Span` creation using the [`GlobalTracer`](https://www.nuget.org/packages/OpenTracing/).
