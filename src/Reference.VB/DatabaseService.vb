@@ -6,12 +6,18 @@
 ''' </summary>
 Public Class DatabaseService
 
+    Private ReadOnly dbServerType As DBServerType
+
+    Public Sub New(databaseType As DBServerType)
+        dbServerType = databaseType
+    End Sub
+
     ''' <summary>
     ''' Ensure migration
     ''' </summary>
     ''' <returns>Migration task</returns>
     Public Async Function EnsureMigrationAsync() As Task
-        Using context = New GeoContext()
+        Using context = New GeoContext(dbServerType)
             Await context.Database.MigrateAsync()
         End Using
     End Function
@@ -23,7 +29,7 @@ Public Class DatabaseService
     ''' <param name="item">OpenStreetMapItem value</param>
     ''' <returns>Save database task</returns>
     Public Async Function SaveDataAsync(geoPoint As GeoPoint, item As OpenStreetMapItem) As Task(Of Boolean)
-        Using context = New GeoContext()
+        Using context = New GeoContext(dbServerType)
             Dim entity = Await context.GeoData.FindAsync(geoPoint.Uuid)
             If entity IsNot Nothing Then
                 Return False
@@ -53,7 +59,7 @@ Public Class DatabaseService
     ''' <returns>List with all geo data</returns>
     Public Async Function GetAllAsync() As Task(Of List(Of (GeoPoint As GeoPoint, StreetMap As OpenStreetMapItem)))
         Dim lstResponse = New List(Of (GeoPoint As GeoPoint, StreetMap As OpenStreetMapItem))
-        Using context = New GeoContext()
+        Using context = New GeoContext(dbServerType)
             Dim data = Await context.GeoData.ToArrayAsync()
             For Each item As GeoEntity In data
                 Dim geoPoint = New GeoPoint() With {

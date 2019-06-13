@@ -8,9 +8,9 @@ Imports Xunit
 
 
 ''' <summary>
-''' Geo Integration Test
+''' MySql Integration Test
 ''' </summary>
-Public Class GeoIntegrationTest
+Public Class MySqlIntegrationTest
     Private ReadOnly _logger As ILogger
 
     ''' <summary>
@@ -24,16 +24,16 @@ Public Class GeoIntegrationTest
         End If
 
         Dim loggerFactory = New LoggerFactory()
-        _logger = loggerFactory.CreateLogger(Of GeoIntegrationTest)()
+        _logger = loggerFactory.CreateLogger(Of MySqlIntegrationTest)()
 
     End Sub
 
     ''' <summary>
-    ''' Complete Geo Test
+    ''' MySql Geo Test
     ''' </summary>
     ''' <returns>Test task</returns>
     <Fact>
-    Public Async Function CompleteOKTest() As Task
+    Public Async Function MySqlCompleteTest() As Task
         Const UUID = "9E219725-490E-4509-A42D-D0388DF317D4"
 
         Dim tracer = GlobalTracer.Instance
@@ -58,7 +58,7 @@ Public Class GeoIntegrationTest
 
         Dim streetMap As OpenStreetMapItem
         Dim openStreetMapServiceCache = New OpenStreetMapRedisCache()
-        Dim openStreetMapService = New OpenstreetMapService()
+        Dim openStreetMapService = New OpenStreetMapService()
 
         Using scope As OpenTracing.IScope = tracer.BuildSpan("Get OpenStreet Data").StartActive()
             _logger.LogInformation("Getting data from cache")
@@ -74,7 +74,7 @@ Public Class GeoIntegrationTest
             End If
         End Using
 
-        Dim dbService = New DatabaseService(DBServerType.SqlServer)
+        Dim dbService = New DatabaseService(DBServerType.MySql)
 
         Using scope As OpenTracing.IScope = tracer.BuildSpan("Save data").StartActive()
             _logger.LogInformation("Ensuring migrations")
@@ -92,36 +92,6 @@ Public Class GeoIntegrationTest
             _logger.LogInformation("Cleaning GeoService cache data.")
             Await geoServiceCache.DeleteAsync(UUID)
             Await openStreetMapServiceCache.DeleteAsync(UUID)
-        End Using
-
-    End Function
-
-    ''' <summary>
-    ''' Error integration test
-    ''' </summary>
-    ''' <returns>Test task</returns>
-    <Fact>
-    Public Async Function ErrorIntegrationTest() As Task
-        Const UUID = "C4F198BD-9F6B-43D0-BFCE-5D21EB2FECDG"
-
-        Dim tracer = GlobalTracer.Instance
-
-        Dim geoPoint As GeoPoint
-        Dim geoServiceCache = New GeoServiceRedisCache()
-        Dim geoService = New GeoService()
-
-        Using scope As OpenTracing.IScope = tracer.BuildSpan("Get GeoPoint Data").StartActive()
-            _logger.LogInformation("Getting data from cache")
-            geoPoint = Await geoServiceCache.GetGeoPointAsync(UUID)
-            If geoPoint Is Nothing Then
-                _logger.LogWarning("The GeoPoint was not found in the cache.")
-                geoPoint = Await geoService.GetGeoPointAsync(UUID)
-                Assert.NotNull(geoPoint)
-                _logger.LogInformation("The GeoPoint was retrieved from the GeoService: {geoPoint}", geoPoint)
-                Await geoServiceCache.SetGeoPointAsync(UUID, geoPoint)
-            Else
-                _logger.LogInformation("The GeoPoint was found in the cache: {geoPoint}", geoPoint)
-            End If
         End Using
 
     End Function

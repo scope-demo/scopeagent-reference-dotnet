@@ -10,13 +10,24 @@ namespace Reference.CSharp
     /// </summary>
     public class DatabaseService
     {
+        private readonly DBServerType dbServerType;
+
+        /// <summary>
+        /// Database service
+        /// </summary>
+        /// <param name="databaseType">Database server type</param>
+        public DatabaseService(DBServerType databaseType)
+        {
+            dbServerType = databaseType;
+        }
+
         /// <summary>
         /// Ensure migration
         /// </summary>
         /// <returns>Migration task</returns>
         public async Task EnsureMigrationAsync()
         {
-            using (var context = new GeoContext())
+            using (var context = new GeoContext(dbServerType))
                 await context.Database.MigrateAsync();
         }
 
@@ -28,7 +39,7 @@ namespace Reference.CSharp
         /// <returns>Save database task</returns>
         public async Task<bool> SaveDataAsync(GeoPoint geoPoint, OpenStreetMapItem item)
         {
-            using (var context = new GeoContext())
+            using (var context = new GeoContext(dbServerType))
             {
                 var entity = await context.GeoData.FindAsync(geoPoint.Uuid);
                 if (entity != null)
@@ -60,7 +71,7 @@ namespace Reference.CSharp
         public async Task<List<(GeoPoint GeoPoint, OpenStreetMapItem StreetMap)>> GetAllAsync()
         {
             var lstResponse = new List<(GeoPoint GeoPoint, OpenStreetMapItem StreetMap)>();
-            using (var context = new GeoContext())
+            using (var context = new GeoContext(dbServerType))
             {
                 var data = await context.GeoData.ToArrayAsync();
                 foreach (var item in data)

@@ -8,9 +8,27 @@ namespace Reference.CSharp
     /// </summary>
     public class GeoContext : DbContext
     {
+        private readonly DBServerType dbServerType;
+
+        public GeoContext(DBServerType databaseType)
+        {
+            dbServerType = databaseType;
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(Settings.DBConnectionString);
+            switch (dbServerType)
+            {
+                case DBServerType.SqlServer:
+                    optionsBuilder.UseSqlServer(Settings.DBConnectionString);
+                    break;
+                case DBServerType.Postgres:
+                    optionsBuilder.UseNpgsql(Settings.PostgresConnectionString);
+                    break;
+                case DBServerType.MySql:
+                    optionsBuilder.UseMySql(Settings.MySqlConnectionString);
+                    break;
+            }
         }
 
         public DbSet<GeoEntity> GeoData { get; set; }

@@ -80,7 +80,7 @@ namespace Reference.Tests.CSharp.xUnit
                     _logger.LogInformation("The OpenStreet data was found in the cache: {openStreetMap}", streetMap);
             }
 
-            var dbServices = new DatabaseService();
+            var dbServices = new DatabaseService(DBServerType.SqlServer);
 
             using (var scope = tracer.BuildSpan("Save data").StartActive())
             {

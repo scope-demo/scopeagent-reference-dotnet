@@ -5,6 +5,21 @@ services:
   redis:
     image: redis
 
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=test
+      - POSTGRES_USER=testUser
+      - POSTGRES_PASSWORD=testPassw0rd
+
+  mysql:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootPassw0rd
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=testUser
+      - MYSQL_PASSWORD=testPassw0rd
+
   sqlserver:
     image: mcmoe/mssqldocker
     environment: 
@@ -32,4 +47,5 @@ services:
     links:
       - redis
       - sqlserver
-  
+      - postgres
+      - mysql

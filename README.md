@@ -71,3 +71,13 @@ Solution, containing examples for `C#`, `VB.NET` and `F#`
         - `Entity framework` instrumentation using the `SqlServer` connector.
         
     [`View Results`](https://demo.scope.dev/explore/9b3b9640-cead-4362-b5e8-2aa0af1f2414/15f60180-24a2-4015-9a8d-f3773f724424/CSharp/test/00000000-0000-0000-5327-22d2a30d11e2/trace)
+
+- **PostgresIntegrationTest**: *(Available only on C# and VB.NET UnitTest Project)*
+    - [**`PostgresCompleteTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/PostgresIntegrationTest.cs#L34:L105): *Clone of the `GeoIntegrationTest` using a postgresql database*
+        
+    [`View Results`]
+
+- **MySqlIntegrationTest**: *(Available only on C# and VB.NET UnitTest Project)*
+    - [**`MySqlCompleteTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/MySqlIntegrationTest.cs#L34:L105): *Clone of the `GeoIntegrationTest` using a mysql database*
+        
+    [`View Results`]
