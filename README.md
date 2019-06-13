@@ -75,3 +75,8 @@ Solution, containing examples for `C#`, `VB.NET` and `F#`
     - [**`PostgresCompleteTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/PostgresIntegrationTest.cs#L34:L105): *Clone of the `GeoIntegrationTest` using a postgresql database*
         
     [`View Results`]
+
+- **MySqlIntegrationTest**: *(Available only on C# and VB.NET UnitTest Project)*
+    - [**`MySqlCompleteTest`**](tests/csharp/Reference.Tests.CSharp.MSTest/MySqlIntegrationTest.cs#L34:L105): *Clone of the `GeoIntegrationTest` using a mysql database*
+        
+    [`View Results`]
