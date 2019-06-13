@@ -6,4 +6,5 @@
 Public Enum DBServerType
     SqlServer
     Postgres
+    MySql
 End Enum

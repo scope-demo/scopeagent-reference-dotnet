@@ -25,6 +25,9 @@ namespace Reference.CSharp
                 case DBServerType.Postgres:
                     optionsBuilder.UseNpgsql(Settings.PostgresConnectionString);
                     break;
+                case DBServerType.MySql:
+                    optionsBuilder.UseMySQL(Settings.MySqlConnectionString);
+                    break;
             }
         }
 

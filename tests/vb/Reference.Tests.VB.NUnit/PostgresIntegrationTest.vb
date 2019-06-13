@@ -25,7 +25,7 @@ Public Class PostgresIntegrationTest
         End If
 
         Dim loggerFactory = New LoggerFactory()
-        _logger = loggerFactory.CreateLogger(Of GeoIntegrationTest)()
+        _logger = loggerFactory.CreateLogger(Of PostgresIntegrationTest)()
 
     End Sub
 

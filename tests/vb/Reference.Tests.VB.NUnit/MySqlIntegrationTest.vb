@@ -1,22 +1,22 @@
 ﻿Imports Microsoft.Extensions.Logging
-Imports Microsoft.VisualStudio.TestTools.UnitTesting
+Imports NUnit.Framework
 Imports OpenTracing.Noop
 Imports OpenTracing.Util
 Imports Reference.VB
 ' ReSharper disable InconsistentNaming
 ' ReSharper disable UnusedVariable
 
+
 ''' <summary>
-''' Postgres Integration Test
+''' MySql Integration Test
 ''' </summary>
-<TestClass>
-Public Class PostgresIntegrationTest
+Public Class MySqlIntegrationTest
     Private _logger As ILogger
 
     ''' <summary>
     ''' Initialize test
     ''' </summary>
-    <TestInitialize>
+    <SetUp>
     Public Sub Init()
 
         'If no global tracer is registered (not running with scope-run), we register the Noop tracer
@@ -25,16 +25,16 @@ Public Class PostgresIntegrationTest
         End If
 
         Dim loggerFactory = New LoggerFactory()
-        _logger = loggerFactory.CreateLogger(Of PostgresIntegrationTest)()
+        _logger = loggerFactory.CreateLogger(Of MySqlIntegrationTest)()
 
     End Sub
 
     ''' <summary>
-    ''' Postgres Geo Test
+    ''' MySql Geo Test
     ''' </summary>
     ''' <returns>Test task</returns>
-    <TestMethod>
-    Public Async Function PostgresCompleteTest() As Task
+    <Test>
+    Public Async Function MySqlCompleteTest() As Task
         Const UUID = "9E219725-490E-4509-A42D-D0388DF317D4"
 
         Dim tracer = GlobalTracer.Instance
@@ -75,7 +75,7 @@ Public Class PostgresIntegrationTest
             End If
         End Using
 
-        Dim dbService = New DatabaseService(DBServerType.Postgres)
+        Dim dbService = New DatabaseService(DBServerType.MySql)
 
         Using scope As OpenTracing.IScope = tracer.BuildSpan("Save data").StartActive()
             _logger.LogInformation("Ensuring migrations")
@@ -98,5 +98,4 @@ Public Class PostgresIntegrationTest
     End Function
 
 End Class
-
 

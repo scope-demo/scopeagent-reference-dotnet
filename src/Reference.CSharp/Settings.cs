@@ -18,5 +18,9 @@ namespace Reference.CSharp
         /// Postgresql connection string
         /// </summary>
         public const string PostgresConnectionString = "Host=postgres;Port=5432;User ID=testUser;Password=testPassw0rd;Database=test;Pooling=true;";
+        /// <summary>
+        /// MySql connection string
+        /// </summary>
+        public const string MySqlConnectionString = "Server=mysql;Database=test;Uid=testUser;Pwd=testPassw0rd;";
     }
 }

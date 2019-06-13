@@ -7,10 +7,10 @@ Imports Reference.VB
 ' ReSharper disable UnusedVariable
 
 ''' <summary>
-''' Postgres Integration Test
+''' MySql Integration Test
 ''' </summary>
 <TestClass>
-Public Class PostgresIntegrationTest
+Public Class MySqlIntegrationTest
     Private _logger As ILogger
 
     ''' <summary>
@@ -25,16 +25,16 @@ Public Class PostgresIntegrationTest
         End If
 
         Dim loggerFactory = New LoggerFactory()
-        _logger = loggerFactory.CreateLogger(Of PostgresIntegrationTest)()
+        _logger = loggerFactory.CreateLogger(Of MySqlIntegrationTest)()
 
     End Sub
 
     ''' <summary>
-    ''' Postgres Geo Test
+    ''' MySql Geo Test
     ''' </summary>
     ''' <returns>Test task</returns>
     <TestMethod>
-    Public Async Function PostgresCompleteTest() As Task
+    Public Async Function MySqlCompleteTest() As Task
         Const UUID = "9E219725-490E-4509-A42D-D0388DF317D4"
 
         Dim tracer = GlobalTracer.Instance
@@ -75,7 +75,7 @@ Public Class PostgresIntegrationTest
             End If
         End Using
 
-        Dim dbService = New DatabaseService(DBServerType.Postgres)
+        Dim dbService = New DatabaseService(DBServerType.MySql)
 
         Using scope As OpenTracing.IScope = tracer.BuildSpan("Save data").StartActive()
             _logger.LogInformation("Ensuring migrations")

@@ -18,6 +18,8 @@ Public Class GeoContext
                 optionsBuilder.UseSqlServer(Settings.DBConnectionString)
             Case DBServerType.Postgres
                 optionsBuilder.UseNpgsql(Settings.PostgresConnectionString)
+            Case DBServerType.MySql
+                optionsBuilder.UseMySQL(Settings.MySqlConnectionString)
         End Select
     End Sub
 

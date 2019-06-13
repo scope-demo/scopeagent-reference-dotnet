@@ -1,41 +1,40 @@
 ﻿using Microsoft.Extensions.Logging;
-using NUnit.Framework;
 using OpenTracing.Noop;
 using OpenTracing.Util;
 using Reference.CSharp;
 using System.Threading.Tasks;
+using Xunit;
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedVariable
 
-namespace Reference.Tests.CSharp.NUnit
+namespace Reference.Tests.CSharp.xUnit
 {
     /// <summary>
-    /// Postgres Integration Test
+    /// MySql Integration Test
     /// </summary>
-    public class PostgresIntegrationTest
+    public class MySqlIntegrationTest
     {
-        private ILogger _logger;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Initialize test
         /// </summary>
-        [SetUp]
-        public void Init()
+        public MySqlIntegrationTest()
         {
             //If no global tracer is registered (not running with scope-run), we register the Noop tracer
             if (!GlobalTracer.IsRegistered())
                 GlobalTracer.Register(NoopTracerFactory.Create());
 
             var loggerFactory = new LoggerFactory();
-            _logger = loggerFactory.CreateLogger<PostgresIntegrationTest>();
+            _logger = loggerFactory.CreateLogger<MySqlIntegrationTest>();
         }
 
         /// <summary>
-        /// Postgres Geo Test
+        /// MySql Geo Test
         /// </summary>
         /// <returns>Test task</returns>
-        [Test]
-        public async Task PostgresCompleteTest()
+        [Fact]
+        public async Task MySqlCompleteTest()
         {
             const string UUID = "9E219725-490E-4509-A42D-D0388DF317D4";
 
@@ -53,7 +52,7 @@ namespace Reference.Tests.CSharp.NUnit
                 {
                     _logger.LogWarning("The GeoPoint was not found in the cache.");
                     geoPoint = await geoService.GetGeoPointAsync(UUID);
-                    Assert.IsNotNull(geoPoint, "The GeoPoint shouldn't be null");
+                    Assert.NotNull(geoPoint);
                     _logger.LogInformation("The GeoPoint was retrieved from the GeoService: {geoPoint}", geoPoint);
                     await geoServiceCache.SetGeoPointAsync(UUID, geoPoint);
                 }
@@ -73,7 +72,7 @@ namespace Reference.Tests.CSharp.NUnit
                 {
                     _logger.LogWarning("The OpenStreet data was not found in the cache.");
                     streetMap = await openStreetMapService.GetOpenStreetMapAsync(geoPoint);
-                    Assert.IsNotNull(streetMap, "The OpenStreet data is null!");
+                    Assert.NotNull(streetMap);
                     _logger.LogInformation("The OpenStreet data was retrieved from the Service: {openStreetMap}", streetMap);
                     await openStreetMapServiceCache.SetOpenStreetMapAsync(UUID, streetMap);
                 }
@@ -81,7 +80,7 @@ namespace Reference.Tests.CSharp.NUnit
                     _logger.LogInformation("The OpenStreet data was found in the cache: {openStreetMap}", streetMap);
             }
 
-            var dbServices = new DatabaseService(DBServerType.Postgres);
+            var dbServices = new DatabaseService(DBServerType.MySql);
 
             using (var scope = tracer.BuildSpan("Save data").StartActive())
             {

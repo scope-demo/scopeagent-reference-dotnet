@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace Reference.Tests.CSharp.NUnit
 {
     /// <summary>
-    /// Postgres Integration Test
+    /// MySql Integration Test
     /// </summary>
-    public class PostgresIntegrationTest
+    public class MySqlIntegrationTest
     {
         private ILogger _logger;
 
@@ -27,15 +27,15 @@ namespace Reference.Tests.CSharp.NUnit
                 GlobalTracer.Register(NoopTracerFactory.Create());
 
             var loggerFactory = new LoggerFactory();
-            _logger = loggerFactory.CreateLogger<PostgresIntegrationTest>();
+            _logger = loggerFactory.CreateLogger<MySqlIntegrationTest>();
         }
 
         /// <summary>
-        /// Postgres Geo Test
+        /// MySql Geo Test
         /// </summary>
         /// <returns>Test task</returns>
         [Test]
-        public async Task PostgresCompleteTest()
+        public async Task MySqlCompleteTest()
         {
             const string UUID = "9E219725-490E-4509-A42D-D0388DF317D4";
 
@@ -81,7 +81,7 @@ namespace Reference.Tests.CSharp.NUnit
                     _logger.LogInformation("The OpenStreet data was found in the cache: {openStreetMap}", streetMap);
             }
 
-            var dbServices = new DatabaseService(DBServerType.Postgres);
+            var dbServices = new DatabaseService(DBServerType.MySql);
 
             using (var scope = tracer.BuildSpan("Save data").StartActive())
             {

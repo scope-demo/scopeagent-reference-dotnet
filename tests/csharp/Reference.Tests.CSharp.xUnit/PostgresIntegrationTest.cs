@@ -26,7 +26,7 @@ namespace Reference.Tests.CSharp.xUnit
                 GlobalTracer.Register(NoopTracerFactory.Create());
 
             var loggerFactory = new LoggerFactory();
-            _logger = loggerFactory.CreateLogger<GeoIntegrationTest>();
+            _logger = loggerFactory.CreateLogger<PostgresIntegrationTest>();
         }
 
         /// <summary>

@@ -8,6 +8,7 @@ namespace Reference.CSharp
     public enum DBServerType
     {
         SqlServer,
-        Postgres
+        Postgres,
+        MySql
     }
 }
