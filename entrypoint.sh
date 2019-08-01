@@ -1,5 +1,5 @@
 echo Installing the ScopeAgent.Runner
-dotnet tool install -g ScopeAgent.Runner --version 0.1.8-beta.3
+dotnet tool install -g ScopeAgent.Runner
 
 echo Fix Path
 export PATH="$PATH:/root/.dotnet/tools"
