@@ -20,6 +20,8 @@ services:
 
   scopeagent-reference-dotnet:
     build: .
+    volumes:
+     - ~/.scope:/root/.scope
     environment: 
       - CI
       - SCOPE_APIKEY
