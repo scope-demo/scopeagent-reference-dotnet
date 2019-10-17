@@ -94,6 +94,13 @@ namespace Reference.Tests.CSharp.xUnit
                     _logger.LogInformation("Data is already in the db.");
             }
 
+            var dapperService = new DapperService();
+            using (var scope = tracer.BuildSpan("Dapper").StartActive())
+            {
+                var res = await dapperService.GetGeoPointsAsync();
+                _logger.LogWarning($"There are {res?.Count ?? 0} geopoints in the database");
+            }
+
             using (var scope = tracer.BuildSpan("Cleaning").StartActive())
             {
                 _logger.LogInformation("Cleaning GeoService cache data.");
